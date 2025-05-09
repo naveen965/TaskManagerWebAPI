@@ -56,7 +56,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult EditTask(int id, TasksDto eventDto)
+        public IActionResult EditTask(int id, TasksDto taskDto)
         {
             var task = context.TaskS.Find(id);
             if (task == null)
@@ -64,12 +64,12 @@ namespace WebApi.Controllers
                 return NotFound();
             }
 
-            task.Title = eventDto.Title;
-            task.Description = eventDto.Description;
-            task.Priority = eventDto.Priority;
-            task.Status = eventDto.Status;
+            task.Title = taskDto.Title;
+            task.Description = taskDto.Description;
+            task.Priority = taskDto.Priority;
+            task.Status = taskDto.Status;
             task.CreatedDate = DateTime.Now;
-            task.DueDate = eventDto.DueDate;
+            task.DueDate = taskDto.DueDate;
 
             context.SaveChanges();
 
